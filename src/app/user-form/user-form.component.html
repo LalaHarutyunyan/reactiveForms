@@ -1,0 +1,28 @@
+<div id="formdiv" [formGroup]="profileForm" *ngFor="let form of forms.controls; let i  index" >
+    <form (ngSubmit)="onSubmit()" formArrayName="forms" formControlName="i" >
+
+        <label for="first-name">First Name: </label>
+        <input id="first-name" type="text" formControlName="firstName">
+
+        <label for="last-name">Last Name: </label>
+        <input id="last-name" type="text" formControlName="lastName">
+
+        <label for="email">Email: </label>
+        <input #email id="email" type="email" formControlName="email">
+
+        <span *ngIf="profileFormControl.email.invalid && (profileFormControl.email.dirty || profileFormControl.email.touched)">Email is required</span>
+
+        <label for="number">Check number</label>
+        <input type="number" id="number" name="number" min="1" max="10" formControlName="number">
+
+        <label for="pass">Password: </label>
+        <input id="pass" type="password" formControlName="password">
+
+        <label for="comfirm">Comfirm password</label>
+        <input id="comfirm" type="password" formControlName="confirmpass">
+
+        <p>Complete the form to enable button.</p>
+        <button type="submit" (click) = "addForm()" >Add</button>  
+        <button type="submit" [disabled]="!profileForm.valid" (click)= "addItem()">Submit</button>
+    </form>
+</div>
